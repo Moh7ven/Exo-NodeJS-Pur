@@ -1,0 +1,16 @@
+{
+  "name": "server-api",
+  "version": "1.0.0",
+  "description": "apprendre le backend",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "author": "marie",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

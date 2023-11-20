@@ -1,0 +1,280 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+main.login,
+main.dashboard {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+main {
+  position: relative;
+}
+
+main .loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+main .loader p {
+  color: white;
+  font-size: 2rem;
+}
+
+span.title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.5rem;
+  width: 20%;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  background: orange;
+}
+span.title.little {
+  width: 7% !important;
+  margin: 0;
+  background: none;
+}
+
+span.title span.t {
+  font-weight: bolder;
+  font-size: 5rem;
+  padding: 0.1rem 1.1rem;
+  color: white;
+  border: 2px solid white;
+  border-radius: 0.5rem;
+}
+span.title.little span.t {
+  font-size: 2rem;
+}
+
+span.title span.point {
+  font-weight: bolder;
+  display: block;
+  border-radius: 1rem;
+  margin: 0 0.5rem;
+  margin-bottom: -7px;
+  font-size: 2.5rem;
+  color: white;
+}
+
+span.title.little span.point {
+  font-size: 1.2rem;
+  margin-bottom: -3px;
+}
+
+main.login form {
+  width: 20%;
+  margin: 0.2rem auto;
+  border: 1px solid white;
+  border-radius: 0.5rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+main.login form input {
+  padding: 1rem;
+  border: 1px solid white;
+  outline: none;
+  border-radius: 0.5rem;
+  width: 80%;
+  margin: 0.5rem auto;
+}
+
+main.login form button {
+  padding: 0.5rem;
+  width: 80%;
+  margin: 0 auto;
+  outline: none;
+  border-radius: 0.5rem;
+  border: none;
+  background: orange;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+main.login p.no {
+  color: white;
+  margin: 0.5rem 0;
+}
+
+main.login p.no a,
+main.login p.no a:visited {
+  color: dodgerblue !important;
+}
+
+/* main dashboard */
+main.dashboard {
+  align-items: flex-start;
+  background: white;
+  justify-content: flex-start;
+}
+
+main.dashboard header {
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+main.dashboard header button {
+  padding: 0.5rem;
+  outline: none;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  border-radius: 0.5rem;
+  color: lime;
+  border: 1px solid lime;
+  border-radius: 0.5rem;
+  background: transparent;
+}
+
+main.dashboard header button.deconnect {
+  border-color: red;
+  color: red;
+  cursor: pointer;
+}
+
+main.dashboard section {
+  width: 80%;
+  margin: 0 auto;
+  height: auto;
+  padding: 0.5rem;
+  margin-top: 5%;
+}
+
+main.dashboard section div.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+main.dashboard section div.actions div.filters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start width-auto;
+}
+
+main.dashboard section div.actions div.filters select {
+  padding: 0.7rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+main.dashboard section div.actions div.mini-form {
+  width: 40%;
+  text-align: right;
+}
+main.dashboard section div.actions input {
+  padding: 0.7rem;
+  outline: none;
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+  width: 80%;
+}
+main.dashboard section div.actions button {
+  padding: 0.7rem;
+  background: dodgerblue;
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  width: 7%;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+}
+main.dashboard section div.actions button i {
+  margin: 0 auto;
+}
+main.dashboard hr {
+  height: 5px;
+  width: 100%;
+  background: gray;
+  margin: 0.5rem auto;
+}
+main.dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+main.dashboard table td {
+  border-bottom: 1px solid gray;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  color: rgb(108, 108, 108);
+}
+
+main.dashboard table td.title {
+  width: 30%;
+  overflow-y: hidden;
+  text-align: left;
+}
+main.dashboard table td.actions {
+  width: 15%;
+  text-align: center;
+}
+
+main.dashboard table td.actions button {
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+main.dashboard table td.actions button:nth-child(1) {
+  background: blue;
+}
+
+main.dashboard table td.actions button:nth-child(2) {
+  background: green;
+}
+main.dashboard table td.actions button:nth-child(3) {
+  background: red;
+}
+
+main.dashboard table tr.done td {
+  border-bottom-color: green;
+}
+
+main.dashboard table tr.done td {
+  color: green;
+}

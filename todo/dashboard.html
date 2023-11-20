@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="dashboard">
+      <div class="loader">
+        <p>Loading...</p>
+      </div>
+      <header>
+        <span class="title little">
+          <span class="t">T</span>
+          <span class="point">odo.</span>
+        </span>
+        <div>
+          <button id="username"></button>
+          <button class="deconnect">deconnexion</button>
+        </div>
+      </header>
+      <section>
+        <div class="actions">
+          <div class="filters">
+            <select>
+              <option selected disabled>filter by day</option>
+              <option value="all">all days</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="sunday">Sunday</option>
+            </select>
+            <select>
+              <option selected disabled>filter by status</option>
+              <option value="all">all status</option>
+              <option value="in-progress">in-progress</option>
+              <option value="done">done</option>
+            </select>
+          </div>
+          <div class="mini-form">
+            <input typ="text" placeholder="enter an text" />
+            <button class="addTasks"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <hr />
+        <table id="tasksTable">
+          <p id="noTasks"></p>
+          <!-- <tr>
+            <td class="title">
+              faire la cuisine qdfqfsdf qdfqsdfqdf qsfsdf sqfqsdf sqdfsdf sdfsd
+              fsdqf
+            </td>
+            <td>jeudi 23 march à 23h30</td>
+            <td class="status">in progress..</td>
+            <td class="actions">
+              <button><i class="fa fa-edit"></i> edit</button>
+              <button><i class="fa fa-check"></i> done</button>
+              <button><i class="fa fa-trash"></i> delete</button>
+            </td>
+          </tr> -->
+          <!-- <tr class="done">
+            <td class="title">
+              faire la cuisine qdfqfsdf qdfqsdfqdf qsfsdf sqfqsdf sqdfsdf sdfsd
+              fsdqf
+            </td>
+            <td>jeudi 23 march à 23h30</td>
+            <td class="status">done</td>
+            <td class="actions"></td>
+          </tr> -->
+        </table>
+      </section>
+    </main>
+  </body>
+
+  <script src="./js/session.js"></script>
+  <script src="./js//dashboard.js"></script>
+</html>
