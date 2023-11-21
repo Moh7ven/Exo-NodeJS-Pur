@@ -112,6 +112,13 @@ const date = `${formatDay()} ${today.getDate()} ${formatMonth()} ${today.getFull
 
 console.log(date);
 
+async function deleteTasks(index, event) {
+  await fetchApi(`/deleteTasks/${index}`, "GET");
+  let tr = event.target.parentElement.parentElement;
+  console.log(tr);
+  document.querySelector("tbody").removeChild(tr);
+}
+
 window.addEventListener("DOMContentLoaded", async () => {
   let req = await fetchApi(
     `/getUser/${localStorage.getItem("session")}`,
@@ -125,7 +132,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     noTasks.textContent = "Aucune tâche ajoutée pour l'instant.";
   }
 
-  addTasks.addEventListener("click", async (e) => {
+  addTasks.addEventListener("submit", async (e) => {
     e.preventDefault();
     let dataTasks = {
       userId: localStorage.getItem("session"),
@@ -145,7 +152,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     <td class="actions">
       <button><i class="fa fa-edit"></i> edit</button>
       <button><i class="fa fa-check"></i> done</button>
-      <button><i class="fa fa-trash"></i> delete</button>
+      <button onclick="deleteTasks(${dataTasks.id}, event)"><i class="fa fa-trash"></i> delete</button>
     </td>
   </tr>
 
@@ -168,7 +175,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     <td class="actions">
       <button><i class="fa fa-edit"></i> edit</button>
       <button><i class="fa fa-check"></i> done</button>
-      <button><i class="fa fa-trash"></i> delete</button>
+      <button onclick="deleteTasks(${element.id}, event)"><i class="fa fa-trash"></i> delete</button>
     </td>
   </tr>
     `;

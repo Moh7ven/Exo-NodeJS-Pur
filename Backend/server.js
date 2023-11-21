@@ -105,7 +105,7 @@ const server = http.createServer((req, res) => {
         let tasks = userTasks.filter((element) => {
           return JSON.parse(element.userId) === idRecup;
         });
-        console.log(tasks);
+        // console.log(tasks);
 
         const { name } = users;
         // console.log(name);
@@ -114,7 +114,7 @@ const server = http.createServer((req, res) => {
       }
     });
 
-    console.log("entrer ...");
+    // console.log("entrer ...");
   } else if (req.url === "/addTasks" && req.method === "POST") {
     let body = "";
     req.on("data", (data) => {
@@ -127,7 +127,7 @@ const server = http.createServer((req, res) => {
       let taks = fs.readFileSync(path.join("assets", "Data", "tasks.json"), {
         encoding: "UTF-8",
       });
-      console.log(taks);
+      // console.log(taks);
 
       taks = JSON.parse(taks);
 
@@ -141,8 +141,29 @@ const server = http.createServer((req, res) => {
         JSON.stringify(taks),
         { encoding: "UTF-8" }
       );
-      res.end("Tache bien enrégistré !");
+      res.end(JSON.stringify("Tache bien enrégistré !"));
     });
+  } else if (req.url.startsWith("/deleteTasks") && req.method === "GET") {
+    let urlRecup = req.url.split("/");
+    let idRecup = parseInt(urlRecup[urlRecup.length - 1]);
+
+    console.log(idRecup);
+    let tasks = fs.readFileSync(path.join("assets", "Data", "tasks.json"), {
+      encoding: "UTF-8",
+    });
+
+    tasks = JSON.parse(tasks).filter((element) => {
+      return idRecup !== element.id;
+    });
+
+    fs.writeFileSync(
+      path.join("assets", "Data", "tasks.json"),
+      JSON.stringify(tasks),
+      {
+        encoding: "UTF-8",
+      }
+    );
+    res.end(JSON.stringify("deleted"));
   }
 });
 
