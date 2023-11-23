@@ -119,6 +119,16 @@ async function deleteTasks(index, event) {
   document.querySelector("tbody").removeChild(tr);
 }
 
+let isUpdate = null;
+
+function editTasks(index, title) {
+  console.log("ici");
+  isUpdate = index;
+  console.log(title);
+  input.value = title;
+  console.log(isUpdate);
+}
+
 window.addEventListener("DOMContentLoaded", async () => {
   let req = await fetchApi(
     `/getUser/${localStorage.getItem("session")}`,
@@ -150,7 +160,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     <td>${dataTasks.date}</td>
     <td class="status">${dataTasks.status}</td>
     <td class="actions">
-      <button><i class="fa fa-edit"></i> edit</button>
+      <button onclick="editTasks(${dataTasks.id}, '${dataTasks.title}')"><i class="fa fa-edit"></i> edit</button>
       <button><i class="fa fa-check"></i> done</button>
       <button onclick="deleteTasks(${dataTasks.id}, event)"><i class="fa fa-trash"></i> delete</button>
     </td>
@@ -173,13 +183,14 @@ window.addEventListener("DOMContentLoaded", async () => {
     <td>${element.date}</td>
     <td class="status">${element.status}</td>
     <td class="actions">
-      <button><i class="fa fa-edit"></i> edit</button>
+      <button onclick="editTasks(${element.id}, '${element.title}')"><i class="fa fa-edit"></i> edit</button>
       <button><i class="fa fa-check"></i> done</button>
       <button onclick="deleteTasks(${element.id}, event)"><i class="fa fa-trash"></i> delete</button>
     </td>
   </tr>
     `;
   });
+
   /* Ici, j'affiche ces taches sur son dashboard */
   document.querySelector("#tasksTable").innerHTML = html;
 
