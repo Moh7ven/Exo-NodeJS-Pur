@@ -122,11 +122,18 @@ async function deleteTasks(index, event) {
 let isUpdate = null;
 
 function editTasks(index, title) {
-  console.log("ici");
   isUpdate = index;
-  console.log(title);
   input.value = title;
   console.log(isUpdate);
+
+  // if (isUpdate !== null) {
+  /*  addTasks.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      await fetchApi(`/updateTasks/${isUpdate}`, "POST", {
+        body: JSON.stringify(dataUpdate),
+      });
+    }); */
+  // }
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -144,39 +151,58 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   addTasks.addEventListener("submit", async (e) => {
     e.preventDefault();
-    let dataTasks = {
-      userId: localStorage.getItem("session"),
-      title: input.value,
-      date: date,
-      status: "in progress...",
-    };
-    console.log(dataTasks);
+    if (!isUpdate) {
+      let dataTasks = {
+        userId: localStorage.getItem("session"),
+        title: input.value,
+        date: date,
+        status: "in progress...",
+      };
+      console.log(dataTasks);
 
-    document.querySelector("#tasksTable").innerHTML += `
-    <tr>
+      let res = await fetchApi("/addTasks", "POST", {
+        body: JSON.stringify(dataTasks),
+      });
+
+      document.querySelector("#tasksTable").innerHTML += `
+    <tr id="id${res.id}">
     <td class="title">
-      ${dataTasks.title}
+      ${res.title}
     </td>
-    <td>${dataTasks.date}</td>
-    <td class="status">${dataTasks.status}</td>
+    <td>${res.date}</td>
+    <td class="status">${res.status}</td>
     <td class="actions">
-      <button onclick="editTasks(${dataTasks.id}, '${dataTasks.title}')"><i class="fa fa-edit"></i> edit</button>
+      <button onclick="editTasks(${res.id}, '${res.title}')"><i class="fa fa-edit"></i> edit</button>
       <button><i class="fa fa-check"></i> done</button>
-      <button onclick="deleteTasks(${dataTasks.id}, event)"><i class="fa fa-trash"></i> delete</button>
+      <button onclick="deleteTasks(${res.id}, event)"><i class="fa fa-trash"></i> delete</button>
     </td>
   </tr>
-
     `;
-    await fetchApi("/addTasks", "POST", {
-      body: JSON.stringify(dataTasks),
-    });
+    } else {
+      let dataUpdate = {
+        title: input.value,
+      };
+
+      let response = await fetchApi(`/updateTasks/${isUpdate}`, "POST", {
+        body: JSON.stringify(dataUpdate),
+      });
+
+      let td = document.querySelector(`table tbody tr#id${isUpdate} td.title`);
+
+      td.textContent = input.value;
+
+      input.value = "";
+      isUpdate = null;
+
+      console.log(response);
+    }
   });
 
   /* Ici je recupère toutes ces tâches */
   let html = "";
   req.tasks.forEach((element) => {
     html += `
-    <tr>
+    <tr id="id${element.id}">
     <td class="title">
       ${element.title}
     </td>
